@@ -1,0 +1,562 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'TeXGyreTermesX';
+  src: url("./elegent-book/TeXGyreTermesX-Regular.otf");
+}
+
+@font-face {
+  font-family: TeXGyreTermesX;
+  font-weight: bold;
+  src: url("./elegent-book/TeXGyreTermesX-Bold.otf");
+}
+
+@font-face {
+  font-family: TeXGyreTermesX;
+  font-style: italic;
+  src: url("./elegent-book/TeXGyreTermesX-Italic.otf");
+}
+
+@font-face {
+  font-family: TeXGyreTermesX;
+  font-weight: bold;
+  font-style: italic;
+  src: url("./elegent-book/TeXGyreTermesX-BoldItalic.otf");
+}
+
+@font-face {
+  font-family: TeXGyreTermesX-Bold;
+  src: url("./elegent-book/TeXGyreTermesX-Bold.otf");
+}
+
+@font-face {
+  font-family: SFTT1000;
+  src: url("./elegent-book/sftt1000.ttf");
+}
+
+#write {
+  max-width: 755px;
+  font: 9.96pt TeXGyreTermesX, 宋体;
+  letter-spacing: -0.2px;
+  padding: 35px 72.5px 10vh;
+}
+
+#write *:not(mjx-container) {
+  margin: 0;
+  line-height: 120%;
+  text-align: justify;
+}
+
+#write > p {
+  line-height: 150%;
+  text-indent: 24px;
+}
+
+#write .md-inline-math {
+  display: inline;
+}
+
+#write .md-html-inline::after {
+  content: '';
+}
+
+#write maintitle {
+  display: block;
+  font: 24.79pt TeXGyreTermesX-Bold, 黑体;
+  margin-left: -74.5px;
+}
+
+#write maintitle:not(.md-expand maintitle) {
+  margin: 22px -74.5px;
+}
+
+#write subtitle {
+  display: block;
+  font: 14.35pt TeXGyreTermesX-Bold, 黑体;
+  margin-left: -68px;
+}
+
+#write subtitle:not(.md-expand subtitle) {
+  margin: 19px -68px;
+}
+
+#write img[alt='logo'] {
+  max-width: 100px;
+}
+
+#write author {
+  font-family: TeXGyreTermesX, 楷体;
+  color: #808080;
+  line-height: 25px;
+}
+
+#write author:not(.md-expand *) {
+  margin-left: -54.5px;
+}
+
+#write author:not(.md-expand *)::before {
+  content: "作者" "：";
+}
+
+#write institute {
+  font-family: TeXGyreTermesX, 楷体;
+  color: #808080;
+  line-height: 25px;
+}
+
+#write institute:not(.md-expand *) {
+  margin-left: -54.5px;
+}
+
+#write institute:not(.md-expand *)::before {
+  content: "组织" "：";
+}
+
+#write date {
+  font-family: TeXGyreTermesX, 楷体;
+  color: #808080;
+  line-height: 25px;
+}
+
+#write date:not(.md-expand *) {
+  margin-left: -54.5px;
+}
+
+#write date:not(.md-expand *)::before {
+  content: "日期" "：";
+}
+
+#write version {
+  font-family: TeXGyreTermesX, 楷体;
+  color: #808080;
+  line-height: 25px;
+}
+
+#write version:not(.md-expand *) {
+  margin-left: -54.5px;
+}
+
+#write version:not(.md-expand *)::before {
+  content: "版本" "：";
+}
+
+#write bioinfo {
+  font-family: TeXGyreTermesX, 楷体;
+  color: #808080;
+  line-height: 25px;
+}
+
+#write bioinfo:not(.md-expand *) {
+  margin-left: -54.5px;
+}
+
+#write bioinfo:not(.md-expand *)::before {
+  content: attr(title) "：";
+}
+
+#write extrainfo {
+  display: block;
+  font-family: TeXGyreTermesX, 楷体;
+  text-align: center;
+  text-indent: 0;
+}
+
+#write extrainfo:not(.md-expand extrainfo) {
+  margin: 20px auto;
+}
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  font-family: TeXGyreTermesX-Bold, 黑体;
+  font-weight: normal;
+  color: #3c71b7;
+}
+
+#write h1 {
+  font-size: 17.21pt;
+  margin: 30px 0;
+  text-align: center;
+  page-break-before: always;
+}
+
+#write h2 {
+  font-size: 14.35pt;
+  margin: 30px 0 15px;
+}
+
+#write h3 {
+  font-size: 11.96pt;
+  margin: 25px 0 10px;
+}
+
+#write h1 {
+  counter-increment: h1;
+  counter-reset: h2 h3;
+}
+
+#write h1 > *:first-child::before {
+  content: "第 " counter(h1) " 章";
+  margin-left: 3px;
+  margin-right: 11px;
+}
+
+#write h2 {
+  counter-increment: h2;
+  counter-reset: h3;
+}
+
+#write h2 > *:first-child::before {
+  content: counter(h1) "." counter(h2);
+  margin-left: 3px;
+  margin-right: 11px;
+}
+
+#write h3 {
+  counter-increment: h3;
+}
+
+#write h3 > *:first-child::before {
+  content: counter(h1) "." counter(h2) "." counter(h3);
+  margin-left: 3px;
+  margin-right: 9px;
+}
+
+#write a, #write email {
+  color: #800000;
+  text-decoration: none;
+}
+
+#write a:hover, #write email:hover {
+  text-decoration: underline;
+}
+
+#write email {
+  font-family: SFTT1000, 宋体;
+}
+
+#write strong {
+  font-family: TeXGyreTermesX-Bold, 黑体;
+}
+
+#write code {
+  font-family: SFTT1000, 宋体;
+}
+
+#write ol,
+#write ul {
+  padding-left: 30.5px;
+  padding-top: 3px;
+}
+
+#write ol > li:not(:first-child),
+#write ul > li:not(:first-child) {
+  line-height: 26px;
+}
+
+#write > pre {
+  font: 8.97pt SFTT1000;
+  border: 1px solid #3c71b7;
+  margin: 2.5px -5.5px 9.5px;
+  padding: 1.5px 10.5px 1px;
+}
+
+#write > pre .CodeMirror-line {
+  margin: 4px 0 !important;
+}
+
+#write m {
+  display: block;
+  font-size: 11pt;
+  text-indent: 0;
+  text-align: center;
+  margin: 12.6px 0;
+}
+
+#write definition {
+  display: block;
+  border: 1px solid #73cea0;
+  border-radius: 3px;
+  box-shadow: 0 0 0 0.5px #a1debf;
+  background-color: #f2fbf6;
+  font-family: TeXGyreTermesX, 楷体;
+  text-indent: 0;
+  padding: 11.5px 17.5px 7px;
+  counter-increment: definition;
+}
+
+#write definition:not(.md-expand *) {
+  margin-bottom: 26.6px;
+}
+
+#write definition:not(.md-expand *)::before {
+  content: "定义" " " counter(definition);
+  display: inline-block;
+  background-color: #00a652;
+  font-family: TeXGyreTermesX, 黑体;
+  color: white;
+  padding: 4px 11.5px;
+  position: absolute;
+  top: -13.5px;
+  left: 13.5px;
+}
+
+#write definition:not(.md-expand *)[title]::before {
+  content: "定义" " " counter(h1) "." counter(definition) " (" attr(title) ")";
+}
+
+#write theorem {
+  display: block;
+  border: 1px solid #ffbc80;
+  border-radius: 3px;
+  box-shadow: 0 0 0 0.5px #ffd2aa;
+  background-color: #fff9f3;
+  font-family: TeXGyreTermesX, 楷体;
+  text-indent: 0;
+  padding: 11.5px 17.5px 7px;
+  counter-increment: theorem;
+}
+
+#write theorem:not(.md-expand *) {
+  margin-bottom: 26.6px;
+}
+
+#write theorem:not(.md-expand *)::before {
+  content: "定理" " " counter(theorem);
+  display: inline-block;
+  background-color: #ff8618;
+  font-family: TeXGyreTermesX, 黑体;
+  color: white;
+  padding: 4px 11.5px;
+  position: absolute;
+  top: -13.5px;
+  left: 13.5px;
+}
+
+#write theorem:not(.md-expand *)[title]::before {
+  content: "定理" " " counter(h1) "." counter(theorem) " (" attr(title) ")";
+}
+
+#write lemma {
+  display: block;
+  border: 1px solid #ffbc80;
+  border-radius: 3px;
+  box-shadow: 0 0 0 0.5px #ffd2aa;
+  background-color: #fff9f3;
+  font-family: TeXGyreTermesX, 楷体;
+  text-indent: 0;
+  padding: 11.5px 17.5px 7px;
+  counter-increment: lemma;
+}
+
+#write lemma:not(.md-expand *) {
+  margin-bottom: 26.6px;
+}
+
+#write lemma:not(.md-expand *)::before {
+  content: "引理" " " counter(lemma);
+  display: inline-block;
+  background-color: #ff8618;
+  font-family: TeXGyreTermesX, 黑体;
+  color: white;
+  padding: 4px 11.5px;
+  position: absolute;
+  top: -13.5px;
+  left: 13.5px;
+}
+
+#write lemma:not(.md-expand *)[title]::before {
+  content: "引理" " " counter(h1) "." counter(lemma) " (" attr(title) ")";
+}
+
+#write corollary {
+  display: block;
+  border: 1px solid #ffbc80;
+  border-radius: 3px;
+  box-shadow: 0 0 0 0.5px #ffd2aa;
+  background-color: #fff9f3;
+  font-family: TeXGyreTermesX, 楷体;
+  text-indent: 0;
+  padding: 11.5px 17.5px 7px;
+  counter-increment: corollary;
+}
+
+#write corollary:not(.md-expand *) {
+  margin-bottom: 26.6px;
+}
+
+#write corollary:not(.md-expand *)::before {
+  content: "推论" " " counter(corollary);
+  display: inline-block;
+  background-color: #ff8618;
+  font-family: TeXGyreTermesX, 黑体;
+  color: white;
+  padding: 4px 11.5px;
+  position: absolute;
+  top: -13.5px;
+  left: 13.5px;
+}
+
+#write corollary:not(.md-expand *)[title]::before {
+  content: "推论" " " counter(h1) "." counter(corollary) " (" attr(title) ")";
+}
+
+#write proposition {
+  display: block;
+  border: 1px solid #73d2fb;
+  border-radius: 3px;
+  box-shadow: 0 0 0 0.5px #a1e1fc;
+  background-color: #f2fbff;
+  font-family: TeXGyreTermesX, 楷体;
+  text-indent: 0;
+  padding: 11.5px 17.5px 7px;
+  counter-increment: proposition;
+}
+
+#write proposition:not(.md-expand *) {
+  margin-bottom: 26.6px;
+}
+
+#write proposition:not(.md-expand *)::before {
+  content: "命题" " " counter(proposition);
+  display: inline-block;
+  background-color: #00aef7;
+  font-family: TeXGyreTermesX, 黑体;
+  color: white;
+  padding: 4px 11.5px;
+  position: absolute;
+  top: -13.5px;
+  left: 13.5px;
+}
+
+#write proposition:not(.md-expand *)[title]::before {
+  content: "命题" " " counter(h1) "." counter(proposition) " (" attr(title) ")";
+}
+
+#write h1 {
+  counter-reset: definition theorem lemma corollary proposition;
+}
+
+#write example {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  counter-increment: example;
+}
+
+#write example::before {
+  content: "例题" " " counter(h1) "." counter(example) " ";
+  color: #00a652;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write problem {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  counter-increment: problem;
+}
+
+#write problem::before {
+  content: "问题" " " counter(h1) "." counter(problem) " ";
+  color: #00a652;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write exercise {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  counter-increment: exercise;
+}
+
+#write exercise::before {
+  content: "练习" " " counter(h1) "." counter(exercise) " ";
+  color: #00a652;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write h1 {
+  counter-reset: example problem exercise;
+}
+
+#write note {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  font-family: TeXGyreTermesX, 楷体;
+}
+
+#write note::before {
+  content: "笔记" " ";
+  color: #ff8618;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write conclusion {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  font-family: TeXGyreTermesX, 楷体;
+}
+
+#write conclusion::before {
+  content: "结论" " ";
+  color: #00aef7;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write assumption {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  font-family: TeXGyreTermesX, 楷体;
+}
+
+#write assumption::before {
+  content: "假设" " ";
+  color: #00aef7;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write property {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  font-family: TeXGyreTermesX, 楷体;
+}
+
+#write property::before {
+  content: "性质" " ";
+  color: #00aef7;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write remark {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  font-family: TeXGyreTermesX, 楷体;
+  font-family: TeXGyreTermesX, 宋体;
+}
+
+#write remark::before {
+  content: "注" " ";
+  color: #ff8618;
+  font-family: TeXGyreTermesX, 黑体;
+}
+
+#write solution {
+  display: block;
+  text-indent: 0;
+  line-height: 21px;
+  font-family: TeXGyreTermesX, 楷体;
+}
+
+#write solution::before {
+  content: "解" " ";
+  color: #00a652;
+  font-family: TeXGyreTermesX, 黑体;
+}

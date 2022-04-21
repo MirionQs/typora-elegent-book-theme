@@ -1,0 +1,392 @@
+@font-face {
+	font-family: 'TeXGyreTermesX';
+	src: url('./elegent-book/TeXGyreTermesX-Regular.otf');
+}
+
+@font-face {
+	font-family: TeXGyreTermesX;
+	font-weight: bold;
+	src: url('./elegent-book/TeXGyreTermesX-Bold.otf');
+}
+
+@font-face {
+	font-family: TeXGyreTermesX;
+	font-style: italic;
+	src: url('./elegent-book/TeXGyreTermesX-Italic.otf');
+}
+
+@font-face {
+	font-family: TeXGyreTermesX;
+	font-weight: bold;
+	font-style: italic;
+	src: url('./elegent-book/TeXGyreTermesX-BoldItalic.otf');
+}
+
+@font-face {
+	font-family: TeXGyreTermesX-Bold;
+	src: url('./elegent-book/TeXGyreTermesX-Bold.otf');
+}
+
+@font-face {
+	font-family: SFTT1000;
+	src: url('./elegent-book/sftt1000.ttf');
+}
+
+$text-font: TeXGyreTermesX,
+宋体;
+$code-font: SFTT1000,
+宋体;
+$strong-font:TeXGyreTermesX-Bold,
+黑体;
+$coverinfo-font: TeXGyreTermesX,
+楷体;
+$blocktitle-font:TeXGyreTermesX,
+黑体;
+
+$title-color: #3c71b7;
+$link-color: #800000;
+$coverinfo-color: #808080;
+
+$blue-color: #00aef7;
+$orange-color: #ff8618;
+$green-color: #00a652;
+
+#write {
+	max-width: 755px;
+	font: 9.96pt $text-font;
+	letter-spacing: -0.2px;
+	padding: 35px 72.5px 10vh;
+	// background-color: lightyellow;
+
+	*:not(mjx-container) {
+		margin: 0;
+		line-height: 120%;
+		text-align: justify;
+	}
+
+	>p {
+		line-height: 150%;
+		text-indent: 24px;
+
+		// * {
+		// 	text-indent: 0;
+		// }
+	}
+
+	.md-inline-math {
+		display: inline;
+	}
+
+	.md-html-inline::after {
+		content: '';
+	}
+
+	maintitle {
+		display: block;
+		font: 24.79pt $strong-font;
+		margin-left: -74.5px;
+
+		&:not(.md-expand maintitle) {
+			margin: 22px -74.5px;
+		}
+	}
+
+	subtitle {
+		display: block;
+		font: 14.35pt $strong-font;
+		margin-left: -68px;
+
+		&:not(.md-expand subtitle) {
+			margin: 19px -68px;
+		}
+	}
+
+	@mixin coverinfo($prefix) {
+		font-family: $coverinfo-font;
+		color: $coverinfo-color;
+		line-height: 25px;
+
+		&:not(.md-expand *) {
+			margin-left: -54.5px;
+
+			&::before {
+				content: $prefix '：';
+			}
+		}
+	}
+
+	img[alt='logo'] {
+		max-width: 100px;
+	}
+
+	author {
+		@include coverinfo('作者');
+	}
+
+	institute {
+		@include coverinfo('组织');
+	}
+
+	date {
+		@include coverinfo('日期');
+	}
+
+	version {
+		@include coverinfo('版本');
+	}
+
+	bioinfo {
+		@include coverinfo(attr(title));
+	}
+
+	extrainfo {
+		display: block;
+		font-family: $coverinfo-font;
+		text-align: center;
+		text-indent: 0;
+
+		&:not(.md-expand extrainfo) {
+			margin: 20px auto;
+		}
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: $strong-font;
+		font-weight: normal;
+		color: $title-color;
+	}
+
+	h1 {
+		font-size: 17.21pt;
+		margin: 30px 0;
+		text-align: center;
+		page-break-before: always;
+	}
+
+	h2 {
+		font-size: 14.35pt;
+		margin: 30px 0 15px;
+	}
+
+	h3 {
+		font-size: 11.96pt;
+		margin: 25px 0 10px;
+	}
+
+	h1 {
+		counter-increment: h1;
+		counter-reset: h2 h3;
+
+		>*:first-child::before {
+			content: '第 'counter(h1)' 章';
+			margin-left: 3px;
+			margin-right: 11px;
+		}
+	}
+
+	h2 {
+		counter-increment: h2;
+		counter-reset: h3;
+
+		>*:first-child::before {
+			content: counter(h1)'.'counter(h2);
+			margin-left: 3px;
+			margin-right: 11px;
+		}
+	}
+
+	h3 {
+		counter-increment: h3;
+
+		>*:first-child::before {
+			content: counter(h1)'.'counter(h2)'.'counter(h3);
+			margin-left: 3px;
+			margin-right: 9px;
+		}
+	}
+
+	a {
+		color: $link-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	email {
+		@extend a;
+		font-family: $code-font;
+	}
+
+	strong {
+		font-family: $strong-font;
+	}
+
+	code {
+		font-family: $code-font;
+	}
+
+	ol,
+	ul {
+		padding-left: 30.5px;
+		padding-top: 3px;
+
+		>li:not(:first-child) {
+			line-height: 26px;
+		}
+	}
+
+	>pre {
+		font: 8.97pt SFTT1000;
+		border: 1px solid $title-color;
+		margin: 2.5px -5.5px 9.5px;
+		padding: 1.5px 10.5px 1px;
+
+		.CodeMirror-line {
+			margin: 4px 0 !important;
+		}
+	}
+
+	m {
+		display: block;
+		font-size: 11pt;
+		text-indent: 0;
+		text-align: center;
+		margin: 12.6px 0;
+	}
+
+	@mixin theorem-type($prefix, $color, $number) {
+		display: block;
+		border: 1px solid mix($color, white, 55%);
+		border-radius: 3px;
+		box-shadow: 0 0 0 0.5px mix($color, white, 37%);
+		background-color: mix($color, white, 5%);
+		font-family: $coverinfo-font;
+		text-indent: 0;
+		padding: 11.5px 17.5px 7px;
+
+		&:not(.md-expand *) {
+			margin-bottom: 26.6px;
+
+			&::before {
+				content: $prefix ' '$number;
+				display: inline-block;
+				background-color: $color;
+				font-family: $blocktitle-font;
+				color: white;
+				padding: 4px 11.5px;
+				position: absolute;
+				top: -13.5px;
+				left: 13.5px;
+			}
+
+			&[title]::before {
+				content: $prefix ' 'counter(h1) '.'$number ' ('attr(title) ')';
+			}
+		}
+	}
+
+	definition {
+		@include theorem-type('定义', $green-color, counter(definition));
+		counter-increment: definition;
+	}
+
+	theorem {
+		@include theorem-type('定理', $orange-color, counter(theorem));
+		counter-increment: theorem;
+	}
+
+	lemma {
+		@include theorem-type('引理', $orange-color, counter(lemma));
+		counter-increment: lemma;
+	}
+
+	corollary {
+		@include theorem-type('推论', $orange-color, counter(corollary));
+		counter-increment: corollary;
+	}
+
+	proposition {
+		@include theorem-type('命题', $blue-color, counter(proposition));
+		counter-increment: proposition;
+	}
+
+	h1 {
+		counter-reset: definition theorem lemma corollary proposition;
+	}
+
+	@mixin example-type($prefix, $number) {
+		display: block;
+		text-indent: 0;
+		line-height: 21px;
+
+		&::before {
+			content: $prefix ' 'counter(h1) '.'$number ' ';
+			color: $green-color;
+			font-family: $blocktitle-font;
+		}
+	}
+
+	example {
+		@include example-type('例题', counter(example));
+		counter-increment: example;
+	}
+
+	problem {
+		@include example-type('问题', counter(problem));
+		counter-increment: problem;
+	}
+
+	exercise {
+		@include example-type('练习', counter(exercise));
+		counter-increment: exercise;
+	}
+
+	h1 {
+		counter-reset: example problem exercise;
+	}
+
+	@mixin note-type($prefix, $color) {
+		display: block;
+		text-indent: 0;
+		line-height: 21px;
+		font-family: $coverinfo-font;
+
+		&::before {
+			content: $prefix ' ';
+			color: $color;
+			font-family: $blocktitle-font;
+		}
+	}
+
+	note {
+		@include note-type('笔记', $orange-color);
+	}
+
+	conclusion {
+		@include note-type('结论', $blue-color);
+	}
+
+	assumption {
+		@include note-type('假设', $blue-color);
+	}
+
+	property {
+		@include note-type('性质', $blue-color);
+	}
+
+	remark {
+		@include note-type('注', $orange-color);
+		font-family: $text-font;
+	}
+
+	solution {
+		@include note-type('解', $green-color);
+	}
+}
