@@ -38,7 +38,7 @@ $code-font: SFTT1000,
 宋体;
 $strong-font:TeXGyreTermesX-Bold,
 黑体;
-$coverinfo-font: TeXGyreTermesX,
+$blocktext-font: TeXGyreTermesX,
 楷体;
 $blocktitle-font:TeXGyreTermesX,
 黑体;
@@ -52,33 +52,131 @@ $orange-color: #ff8618;
 $green-color: #00a652;
 
 #write {
-	max-width: 755px;
+	max-width: 210mm;
 	font: 9.96pt $text-font;
-	letter-spacing: -0.2px;
-	padding: 35px 72.5px 10vh;
-	// background-color: lightyellow;
+	color: black;
+	padding: 35px 76px 50vh;
+	box-shadow: 0 0 3px 1px lightgray;
 
-	*:not(mjx-container) {
+	* {
 		margin: 0;
 		line-height: 120%;
 		text-align: justify;
 	}
 
-	>p {
+	> p {
 		line-height: 150%;
-		text-indent: 24px;
 
-		// * {
-		// 	text-indent: 0;
-		// }
+		&::before {
+			content: '';
+			margin-right: 26.5px;
+		}
 	}
 
-	.md-inline-math {
-		display: inline;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: $strong-font;
+		font-weight: normal;
+		color: $title-color;
 	}
 
-	.md-html-inline::after {
-		content: '';
+	h1 {
+		font-size: 17.21pt;
+		margin: 30px 0;
+		text-align: center;
+		page-break-before: always;
+
+		counter-reset: h2 h3 definition theorem lemma corollary proposition example problem exercise;
+		counter-increment: h1;
+
+		> *:first-child::before {
+			content: '第 'counter(h1)' 章';
+			margin-left: 3px;
+			margin-right: 11px;
+		}
+	}
+
+	h2 {
+		font-size: 14.35pt;
+		margin: 30px 0 15px;
+
+		counter-reset: h3;
+		counter-increment: h2;
+
+		> *:first-child::before {
+			content: counter(h1)'.'counter(h2);
+			margin-left: 3px;
+			margin-right: 11px;
+		}
+	}
+
+	h3 {
+		font-size: 11.96pt;
+		margin: 25px 0 10px;
+
+		counter-increment: h3;
+
+		> *:first-child::before {
+			content: counter(h1)'.'counter(h2)'.'counter(h3);
+			margin-left: 3px;
+			margin-right: 9px;
+		}
+	}
+
+	a {
+		color: $link-color;
+		text-decoration: none;
+	}
+
+	strong {
+		font-family: $strong-font;
+	}
+
+	code {
+		font-family: $code-font;
+	}
+
+	ol,
+	ul {
+		padding-left: 30.5px;
+		padding-top: 3px;
+
+		> li:not(:first-child) {
+			line-height: 26px;
+		}
+	}
+
+	> pre {
+		font: 8.97pt SFTT1000;
+		border: 1px solid $title-color;
+		margin: 2.5px -5.5px 9.5px;
+		padding: 1.5px 10.5px 1px;
+
+		.CodeMirror-line {
+			margin: 4px 0 !important;
+		}
+	}
+
+	m {
+		display: block;
+		font-size: 11pt;
+		text-align: center;
+		margin: 12.6px 0;
+	}
+
+	email {
+		@extend a;
+		font-family: $code-font;
+	}
+
+	img[alt='cover'] {}
+
+	img[alt='logo'] {
+		max-width: 100px;
 	}
 
 	maintitle {
@@ -101,8 +199,8 @@ $green-color: #00a652;
 		}
 	}
 
-	@mixin coverinfo($prefix) {
-		font-family: $coverinfo-font;
+	@mixin coverinfo-type($prefix) {
+		font-family: $blocktext-font;
 		color: $coverinfo-color;
 		line-height: 25px;
 
@@ -115,164 +213,51 @@ $green-color: #00a652;
 		}
 	}
 
-	img[alt='logo'] {
-		max-width: 100px;
-	}
-
 	author {
-		@include coverinfo('作者');
+		@include coverinfo-type('作者');
 	}
 
 	institute {
-		@include coverinfo('组织');
+		@include coverinfo-type('组织');
 	}
 
 	date {
-		@include coverinfo('日期');
+		@include coverinfo-type('日期');
 	}
 
 	version {
-		@include coverinfo('版本');
+		@include coverinfo-type('版本');
 	}
 
 	bioinfo {
-		@include coverinfo(attr(title));
+		@include coverinfo-type(attr(title));
 	}
 
 	extrainfo {
-		display: block;
-		font-family: $coverinfo-font;
+		display: inline-block;
+		font-family: $blocktext-font;
 		text-align: center;
-		text-indent: 0;
+		width: 100%;
 
 		&:not(.md-expand extrainfo) {
 			margin: 20px auto;
 		}
 	}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: $strong-font;
-		font-weight: normal;
-		color: $title-color;
-	}
-
-	h1 {
-		font-size: 17.21pt;
-		margin: 30px 0;
-		text-align: center;
-		page-break-before: always;
-	}
-
-	h2 {
-		font-size: 14.35pt;
-		margin: 30px 0 15px;
-	}
-
-	h3 {
-		font-size: 11.96pt;
-		margin: 25px 0 10px;
-	}
-
-	h1 {
-		counter-increment: h1;
-		counter-reset: h2 h3;
-
-		>*:first-child::before {
-			content: '第 'counter(h1)' 章';
-			margin-left: 3px;
-			margin-right: 11px;
-		}
-	}
-
-	h2 {
-		counter-increment: h2;
-		counter-reset: h3;
-
-		>*:first-child::before {
-			content: counter(h1)'.'counter(h2);
-			margin-left: 3px;
-			margin-right: 11px;
-		}
-	}
-
-	h3 {
-		counter-increment: h3;
-
-		>*:first-child::before {
-			content: counter(h1)'.'counter(h2)'.'counter(h3);
-			margin-left: 3px;
-			margin-right: 9px;
-		}
-	}
-
-	a {
-		color: $link-color;
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	email {
-		@extend a;
-		font-family: $code-font;
-	}
-
-	strong {
-		font-family: $strong-font;
-	}
-
-	code {
-		font-family: $code-font;
-	}
-
-	ol,
-	ul {
-		padding-left: 30.5px;
-		padding-top: 3px;
-
-		>li:not(:first-child) {
-			line-height: 26px;
-		}
-	}
-
-	>pre {
-		font: 8.97pt SFTT1000;
-		border: 1px solid $title-color;
-		margin: 2.5px -5.5px 9.5px;
-		padding: 1.5px 10.5px 1px;
-
-		.CodeMirror-line {
-			margin: 4px 0 !important;
-		}
-	}
-
-	m {
-		display: block;
-		font-size: 11pt;
-		text-indent: 0;
-		text-align: center;
-		margin: 12.6px 0;
-	}
-
 	@mixin theorem-type($prefix, $color, $number) {
-		display: block;
+		display: inline-block;
+		width: 100%;
+		margin-left: -26.5px;
 		border: 1px solid mix($color, white, 55%);
 		border-radius: 3px;
 		box-shadow: 0 0 0 0.5px mix($color, white, 37%);
 		background-color: mix($color, white, 5%);
-		font-family: $coverinfo-font;
-		text-indent: 0;
+		font-family: $blocktext-font;
 		padding: 11.5px 17.5px 7px;
 
 		&:not(.md-expand *) {
-			margin-bottom: 26.6px;
+			margin-top: 20px;
+			margin-bottom: 20px;
 
 			&::before {
 				content: $prefix ' '$number;
@@ -282,7 +267,7 @@ $green-color: #00a652;
 				color: white;
 				padding: 4px 11.5px;
 				position: absolute;
-				top: -13.5px;
+				top: -13.5px+20px;
 				left: 13.5px;
 			}
 
@@ -317,13 +302,9 @@ $green-color: #00a652;
 		counter-increment: proposition;
 	}
 
-	h1 {
-		counter-reset: definition theorem lemma corollary proposition;
-	}
-
 	@mixin example-type($prefix, $number) {
-		display: block;
-		text-indent: 0;
+		display: inline-block;
+		width: 100%;
 		line-height: 21px;
 
 		&::before {
@@ -348,15 +329,11 @@ $green-color: #00a652;
 		counter-increment: exercise;
 	}
 
-	h1 {
-		counter-reset: example problem exercise;
-	}
-
 	@mixin note-type($prefix, $color) {
-		display: block;
-		text-indent: 0;
+		display: inline-block;
+		width: 100%;
 		line-height: 21px;
-		font-family: $coverinfo-font;
+		font-family: $blocktext-font;
 
 		&::before {
 			content: $prefix ' ';
